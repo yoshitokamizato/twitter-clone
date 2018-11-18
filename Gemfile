@@ -7,6 +7,7 @@ gem 'webpacker'
 gem 'react-rails'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
