@@ -1,0 +1,52 @@
+version: '2'
+services:
+  datastore:
+    image: busybox
+    volumes:
+      - /share
+      - ./containers/mysql/volumes:/var/lib/mysql
+    environment:
+      - TZ=Asia/Tokyo
+  server:
+    build:
+      context: ./containers/nginx
+    ports:
+      - '80:80'
+    volumes_from:
+      - datastore
+    depends_on:
+      - datastore
+  web:
+    build:
+      context: .
+      dockerfile: ./containers/ruby/Dockerfile
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    environment:
+      - TZ=Asia/Tokyo
+    volumes_from:
+      - datastore
+    depends_on:
+      - db
+    links:
+      - db
+      - db:database
+      - db:mysql
+    extends:
+      file: ./containers/mysql/password.yml
+      service: password
+  db:
+    build:
+      context: ./containers/mysql
+    ports:
+      - '3306:3306'
+    volumes_from:
+      - datastore
+    depends_on:
+      - datastore
+    extends:
+      file: ./containers/mysql/password.yml
+      service: password

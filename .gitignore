@@ -1,0 +1,14 @@
+log/*
+tmp/*
+*.DS_Store
+*.swp
+*.out
+
+public/system/**/*
+
+vendor/bundle
+vendor/bin
+.bundle/
+bin/
+containers/
+node_modules/
