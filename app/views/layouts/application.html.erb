@@ -11,6 +11,24 @@
   </head>
 
   <body>
+
+    <!--
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    -->
+
+    <% if user_signed_in? %>
+      ログインユーザー： <%= current_user.email %>
+      <%= link_to 'ホーム', '/' %>
+      <%= link_to 'アカウント変更', edit_user_registration_path %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "新規作成", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+
+    <h1>Twitterもどきだよ</h1>
     <%= yield %>
+    
   </body>
 </html>
