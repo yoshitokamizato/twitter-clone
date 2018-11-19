@@ -17,6 +17,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #e6ecf0;
 }

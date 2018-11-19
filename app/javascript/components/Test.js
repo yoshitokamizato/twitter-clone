@@ -1,22 +1,43 @@
 import React from 'react'
 
-class Map extends React.component {
+class Test extends React.Component {
   constructor() {
     super();
-    this.props = [
-      {'id': 1, 'category': 'animal', 'kind': 'dog'},
-      {'id': 2, 'category': 'animal', 'kind': 'cat'},
-      {'id': 3, 'category': 'animal', 'kind': 'bird'},
-    ]
+    this.state = {
+      description: ''
+    };
+    this.handleSubmitButton = this.handleSubmitButton(this);
+    this.handleDescriptionForm = this.handleDescriptionForm(this);
+  }
+  handleSubmitButton() {
+    $.ajax({
+      url: '/tweets/create',
+      type: 'POST',
+      cache: false,
+      data: {
+        description: this.state.description,
+      }
+    }).done(function (data, status, xhr) { // success
+      console.log(data)
+    }.bind(this)).fail(function (xhr, status, data) { // error
+
+    }.bind(this));
+  }
+  handleDescriptionForm(e) {
+    // console.log(data)
+    this.setState({
+      description: e.target.value
+    });
   }
   render() {
-    console.log(animals)
-    const kinds = animals.map(x => x.kind)
-    console.log(kinds)
     return (
-      <div>テスト</div>
+    <div>
+      <span>説明</span>
+      <input type="text" onChange={this.handleDescriptionForm} />
+      <button name="commit" onClick={this.handleSubmitButton}>登録</button>
+    </div>
     );
   }
 }
-
-export default Map;
+    
+export default Test;

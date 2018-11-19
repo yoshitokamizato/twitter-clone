@@ -8,7 +8,6 @@ class Tweet extends React.Component {
     };
   }
   render() {
-    console.log(this.props.tweet)
     let tweet = this.state.tweet;
     return (
       <div className="tweet">

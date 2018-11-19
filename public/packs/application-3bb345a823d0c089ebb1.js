@@ -313,9 +313,9 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 /* 4 */
-/*!********************************************!*\
-  !*** ./app/javascript/components/Tweet.js ***!
-  \********************************************/
+/*!***************************************************!*\
+  !*** ./app/javascript/components/tweets/Tweet.js ***!
+  \***************************************************/
 /*! exports provided: default */
 /*! all exports used */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -3045,9 +3045,9 @@ var Map = function (_React$component) {
 
 /***/ }),
 /* 11 */
-/*!*********************************************!*\
-  !*** ./app/javascript/components/Tweets.js ***!
-  \*********************************************/
+/*!****************************************************!*\
+  !*** ./app/javascript/components/tweets/Tweets.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /*! all exports used */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -24086,10 +24086,10 @@ var map = {
 	"./HelloWorld.js": 7,
 	"./Test": 10,
 	"./Test.js": 10,
-	"./Tweet": 4,
-	"./Tweet.js": 4,
-	"./Tweets": 11,
-	"./Tweets.js": 11
+	"./tweets/Tweet": 4,
+	"./tweets/Tweet.js": 4,
+	"./tweets/Tweets": 11,
+	"./tweets/Tweets.js": 11
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));

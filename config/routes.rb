@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # resources :tweets, only: [:index, :create], format: 'json'
   get 'tweets/index' => 'tweets#index'
+  post 'tweets/create' => 'tweets#create'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
