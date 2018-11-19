@@ -12,8 +12,9 @@ class TweetsPage extends React.Component {
     this.onSubmit2 = this.onSubmit2.bind(this);
   }
   loadTweetsFromServer() {
+    const url = 'http://localhost:3000/tweets/index.json';
     $.ajax({
-      url: 'http://localhost:3000/tweets/index.json',
+      url: url,
       dataType: 'json',
       type: 'GET',
       cache: false,
@@ -40,6 +41,7 @@ class TweetsPage extends React.Component {
       },
       success: (data) => {
         this.loadTweetsFromServer();
+        // this.value = '';
       },
       error: (xhr, status, err) => {
         console.error(url, status, err.toString());
