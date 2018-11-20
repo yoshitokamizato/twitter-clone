@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :tweets, only: [:index, :create], format: 'json'
   get 'tweets/index' => 'tweets#index'
   post 'tweets/create' => 'tweets#create'
+  post 'tweets/destroy' => 'tweets#destroy'
 
 end

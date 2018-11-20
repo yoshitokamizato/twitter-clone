@@ -12,3 +12,8 @@ vendor/bin
 bin/
 containers/
 node_modules/
+
+# Ignore precompiled javascript packs
+/public/packs
+/public/packs-test
+/public/assets

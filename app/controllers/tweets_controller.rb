@@ -8,15 +8,17 @@ class TweetsController < ApplicationController
     end
   end
 
-  # def new
-  # end
-
   def create
     tweet = Tweet.new(
       user_id: current_user.id,
       tweet: params[:tweet]
       )
     tweet.save
+  end
+
+  def destroy
+    # tweet = Tweet.find(id: params[:id])
+    tweet.destroy
   end
 
   # private
