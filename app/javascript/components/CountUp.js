@@ -6,6 +6,8 @@ class CountUp extends React.Component {
     this.state = {
       count: 0
     };
+    this.onClick = this.onClick.bind(this);
+    this.onClickReset = this.onClickReset.bind(this);
   }
   onClick() {
     this.setState({
@@ -21,8 +23,8 @@ class CountUp extends React.Component {
     return (
       <div>
         <p>{this.state.count}</p>
-        <button onClick={this.onClick.bind(this)}>Count Up!</button>
-        <button onClick={this.onClickReset.bind(this)}>Reset</button>
+        <button onClick={this.onClick}>Count Up!</button>
+        <button onClick={this.onClickReset}>Reset</button>
       </div>
     );
   }

@@ -8,11 +8,13 @@ class TweetsPage extends React.Component {
     this.state = {
       tweets: [],
       tweet: '',
+      id: '',
     };
     this.onSubmit2 = this.onSubmit2.bind(this);
+    this.onSubmitDelete = this.onSubmitDelete.bind(this);
   }
   loadTweetsFromServer() {
-    const url = 'http://localhost:3000/tweets/index.json';
+    const url = '/tweets/index.json';
     $.ajax({
       url: url,
       dataType: 'json',
@@ -30,7 +32,7 @@ class TweetsPage extends React.Component {
   }
   onSubmit2(value) {
     console.log(value)
-    const url = 'http://localhost:3000/tweets/create';
+    const url = '/tweets/create';
     $.ajax({
       url: url,
       dataType: 'text',
@@ -41,7 +43,24 @@ class TweetsPage extends React.Component {
       },
       success: (data) => {
         this.loadTweetsFromServer();
-        // this.value = '';
+      },
+      error: (xhr, status, err) => {
+        console.error(url, status, err.toString());
+      },
+    });
+  }
+  onSubmitDelete(id) {
+    const url = '/tweets/destroy';
+    console.log(id)
+    $.ajax({
+      url: url,
+      type: 'DELETE',
+      cache: false,
+      data: {
+        id: id
+      },
+      success: (data) => {
+        this.loadTweetsFromServer();
       },
       error: (xhr, status, err) => {
         console.error(url, status, err.toString());
@@ -55,7 +74,7 @@ class TweetsPage extends React.Component {
     return (
       <div>
         <NewTweet onSubmit1={this.onSubmit2} />
-        <Tweets tweets={this.state.tweets} />
+        <Tweets tweets={this.state.tweets} onDelete={this.onSubmitDelete} />
       </div>
     );
   }

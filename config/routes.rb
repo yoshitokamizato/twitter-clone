@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   get 'tweets/index' => 'tweets#index'
   post 'tweets/create' => 'tweets#create'
-  post 'tweets/destroy' => 'tweets#destroy'
+  delete 'tweets/destroy' => 'tweets#destroy'
 
 end
