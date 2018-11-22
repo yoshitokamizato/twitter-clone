@@ -31,7 +31,6 @@ class TweetsPage extends React.Component {
     });
   }
   onSubmit2(value) {
-    console.log(value)
     const url = '/tweets/create';
     $.ajax({
       url: url,
@@ -51,7 +50,6 @@ class TweetsPage extends React.Component {
   }
   onSubmitDelete(id) {
     const url = '/tweets/destroy';
-    console.log(id)
     $.ajax({
       url: url,
       type: 'DELETE',
