@@ -4,40 +4,24 @@ class Test extends React.Component {
   constructor() {
     super();
     this.state = {
-      description: ''
+      click: false
     };
-    this.handleSubmitButton = this.handleSubmitButton(this);
-    this.handleDescriptionForm = this.handleDescriptionForm(this);
+    this.nameChange = this.nameChange.bind(this);
   }
-  handleSubmitButton() {
-    $.ajax({
-      url: '/tweets/create',
-      type: 'POST',
-      cache: false,
-      data: {
-        description: this.state.description,
-      }
-    }).done(function (data, status, xhr) { // success
-      console.log(data)
-    }.bind(this)).fail(function (xhr, status, data) { // error
-
-    }.bind(this));
-  }
-  handleDescriptionForm(e) {
-    // console.log(data)
+  nameChange() {
+    const nameChangeBool = this.state.click;
     this.setState({
-      description: e.target.value
+      click: !nameChangeBool
     });
   }
   render() {
     return (
-    <div>
-      <span>説明</span>
-      <input type="text" onChange={this.handleDescriptionForm} />
-      <button name="commit" onClick={this.handleSubmitButton}>登録</button>
-    </div>
+      <div>
+        <p>{this.state.click ? 'you' : 'me'}</p>
+        <button onClick={this.nameChange}>名前入れ替え！</button>
+      </div>
     );
   }
 }
-    
+
 export default Test;

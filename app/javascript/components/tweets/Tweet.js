@@ -4,8 +4,13 @@ class Tweet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweet: this.props.tweet
+      tweet: this.props.tweet,
+      id: this.props.id,
     };
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+  handleDelete(id) {
+    this.props.onDelete(id);
   }
   render() {
     const tweet = this.state.tweet;
@@ -25,7 +30,7 @@ class Tweet extends React.Component {
       <div className="tweet">
         <p><span className="user-name">{tweet.user.user_name}</span>　<span className="f-small">{date(new Date(tweet.created_at), 'YYYY/MM/DD hh:mm:ss')}</span></p>
         <p>{tweet.tweet}</p>
-        <p><i className="far fa-comment"></i>　<i className="far fa-heart"></i></p>
+        <p><i className="far fa-comment"></i>　<i className="far fa-heart"></i>　<button onClick={()=>{this.handleDelete(tweet.id)}}>削除</button></p>
       </div>
     );
   }
