@@ -5,9 +5,15 @@ class Tweet extends React.Component {
     super(props);
     this.state = {
       tweet: this.props.tweet,
+      isLiked: this.props.isLiked,
+      likedTweetId: this.props.likedTweetId,
       id: this.props.id,
     };
+    this.handleLike = this.handleLike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+  handleLike(likedTweetId) {
+    this.props.onLike(likedTweetId);
   }
   handleDelete(id) {
     this.props.onDelete(id);
@@ -30,7 +36,9 @@ class Tweet extends React.Component {
       <div className="tweet">
         <p><span className="user-name">{tweet.user.user_name}</span>　<span className="f-small">{date(new Date(tweet.created_at), 'YYYY/MM/DD hh:mm:ss')}</span></p>
         <p>{tweet.tweet}</p>
-        <p><i className="far fa-comment"></i>　<i className="far fa-heart"></i>　<button onClick={()=>{this.handleDelete(tweet.id)}}>削除</button></p>
+        <p><i className="far fa-comment"></i></p>
+        <p><span onClick={()=>{this.handleLike(tweet.id)}}>{this.props.isLiked ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</span></p>
+        <p><button onClick={()=>{this.handleDelete(tweet.id)}}>削除</button></p>
       </div>
     );
   }

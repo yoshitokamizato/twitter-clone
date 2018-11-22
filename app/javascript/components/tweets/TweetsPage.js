@@ -8,9 +8,12 @@ class TweetsPage extends React.Component {
     this.state = {
       tweets: [],
       tweet: '',
+      isLiked: false,
+      likedTweetId: '',
       id: '',
     };
     this.onSubmit2 = this.onSubmit2.bind(this);
+    this.onSubmitLike = this.onSubmitLike.bind(this);
     this.onSubmitDelete = this.onSubmitDelete.bind(this);
   }
   loadTweetsFromServer() {
@@ -48,6 +51,27 @@ class TweetsPage extends React.Component {
       },
     });
   }
+  onSubmitLike(likedTweetId) {
+    const url = '/likes/create';
+    console.log(likedTweetId)
+    $.ajax({
+      url: url,
+      type: 'POST',
+      cache: false,
+      data: {
+        tweet_id: likedTweetId
+      },
+      success: (data) => {
+        this.setState({
+          isLiked: true
+        })
+        this.loadTweetsFromServer();
+      },
+      error: (xhr, status, err) => {
+        console.error(url, status, err.toString());
+      },
+    });
+  }
   onSubmitDelete(id) {
     const url = '/tweets/destroy';
     $.ajax({
@@ -72,7 +96,7 @@ class TweetsPage extends React.Component {
     return (
       <div>
         <NewTweet onSubmit1={this.onSubmit2} />
-        <Tweets tweets={this.state.tweets} onDelete={this.onSubmitDelete} />
+        <Tweets tweets={this.state.tweets} onLike={this.onSubmitLike} onDelete={this.onSubmitDelete} />
       </div>
     );
   }
