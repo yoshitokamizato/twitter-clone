@@ -3,7 +3,8 @@ class LikesController < ApplicationController
   def create
     like = Like.new(
       user_id: current_user.id,
-      tweet_id: params[:tweet_id]
+      tweet_id: params[:tweet_id],
+      is_liked: params[:is_liked]
       )
     like.save
   end

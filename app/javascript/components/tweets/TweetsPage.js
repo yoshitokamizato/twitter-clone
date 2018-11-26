@@ -8,7 +8,6 @@ class TweetsPage extends React.Component {
     this.state = {
       tweets: [],
       tweet: '',
-      isLiked: false,
       likedTweetId: '',
       id: '',
     };
@@ -25,7 +24,7 @@ class TweetsPage extends React.Component {
       cache: false,
       success: (data) => {
         this.setState({
-          tweets: data
+          tweets: data,
         });
       },
       error: (xhr, status, err) => {
@@ -59,12 +58,10 @@ class TweetsPage extends React.Component {
       type: 'POST',
       cache: false,
       data: {
-        tweet_id: likedTweetId
+        tweet_id: likedTweetId,
+        is_liked: true,
       },
       success: (data) => {
-        this.setState({
-          isLiked: true
-        })
         this.loadTweetsFromServer();
       },
       error: (xhr, status, err) => {

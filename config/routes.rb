@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post 'likes/create' => 'likes#create'
   delete 'likes/destroy' => 'likes#destroy'
 
+  get 'tests/index'
+
 end

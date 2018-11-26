@@ -1,0 +1,17 @@
+<h1>Tests#index</h1>
+<p>Find me in app/views/tests/index.html.erb</p>
+
+<% @tweets.each do |tweet| %>
+  <p><%= tweet.tweet %>
+  <% if Like.exists?(tweet_id: tweet.id) %>
+    <i class="fas fa-heart"></i>
+    <% else %>
+    <i class="far fa-heart"></i></p>
+  <% end %>
+<% end %>
+
+<% @array.each do |ary| %>
+  <p><%= ary[:tweet_id] %></p>
+<% end %>
+<%= @array.map{|ary| ary[:tweet_id] } %>
+<p><%= @hash[:a] %></p>

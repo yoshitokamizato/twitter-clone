@@ -6,7 +6,6 @@ class Tweets extends React.Component {
     super(props);
     this.state = {
       tweet: this.props.tweet,
-      isLiked: this.props.isLiked,
       likedTweetId: this.props.likedTweetId,
       id: this.props.id,
     };
