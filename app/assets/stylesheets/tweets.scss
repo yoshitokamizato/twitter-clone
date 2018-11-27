@@ -27,6 +27,20 @@
   .f-small {
     font-size: 0.8em;
   }
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0.5em;
+    .icon {
+      margin: 0 1em 0 0;
+      padding: 0;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
   p {
     margin: 0;
     padding: 0.5em;

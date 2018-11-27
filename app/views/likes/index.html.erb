@@ -1,0 +1,11 @@
+<h2>likes#index</h2>
+<% @likes.each do |like| %>
+  <div class="tweet">
+    <p><%= like.user.user_name %>　<%= like.tweet.created_at %></p>
+    <p><%= like.tweet.tweet %></p>
+    <ul class="icons">
+      <li class="icon"><i class="far fa-comment"></i></li>
+      <li class="icon"><i class="fas fa-heart"></i></li>
+    </ul>
+  </div>
+<% end %>

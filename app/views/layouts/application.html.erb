@@ -16,8 +16,11 @@
     <p class="alert"><%= alert %></p>
 
     <% if user_signed_in? %>
-      ログインユーザー： <%= current_user.email %>
-      <%= link_to 'ホーム', '/' %>
+      Hello, <%= current_user.user_name %>!
+      <%= link_to 'タイムライン', '/' %>
+      <%#= link_to 'マイページ', user_path %>
+      <s><%= link_to 'フォロー/フォロワー', "/users/#{current_user.id}/follows" %></s>
+      <%= link_to 'いいねしたツイート', "/users/#{current_user.id}/likes" %>
       <%= link_to 'アカウント変更', edit_user_registration_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>

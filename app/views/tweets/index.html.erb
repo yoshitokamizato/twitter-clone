@@ -1,2 +1,16 @@
 <h2>tweets#index</h2>
-<%= react_component('tweets/TweetsPage') %>
+<% @tweets.each do |tweet| %>
+  <div class="tweet">
+    <p><%= tweet.user.user_name %>　<%= tweet.created_at %></p>
+    <p><%= tweet.tweet %></p>
+    <ul class="icons">
+      <li class="icon"><i class="far fa-comment"></i></li>
+      <% if Like.exists?(tweet_id: tweet.id) %>
+        <li class="icon"><i class="fas fa-heart"></i></li>
+      <% else %>
+        <li class="icon"><i class="far fa-heart"></i></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+<%#= react_component('tweets/TweetsPage') %>

@@ -10,12 +10,19 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'tweets/index' => 'tweets#index'
-  post 'tweets/create' => 'tweets#create'
-  delete 'tweets/destroy' => 'tweets#destroy'
-  post 'likes/create' => 'likes#create'
-  delete 'likes/destroy' => 'likes#destroy'
+  resources :tweets do
+    resources :replies, except: [:index]
+  end
+  resources :users, only: [:show] do
+    resources :follows, only: [:index, :create, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
+  end
+  # get 'tweets/index' => 'tweets#index'
+  # post 'tweets/create' => 'tweets#create'
+  # delete 'tweets/destroy' => 'tweets#destroy'
+  # post 'likes/create' => 'likes#create'
+  # delete 'likes/destroy' => 'likes#destroy'
 
-  get 'tests/index'
+  get 'tests/index' => 'tests#index'
 
 end

@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_24_020650) do
+ActiveRecord::Schema.define(version: 2018_11_26_143546) do
+
+  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "following_user_id", default: 0, null: false, comment: "フォローしたユーザーのID"
+    t.integer "followed_user_id", default: 0, null: false, comment: "フォローされたユーザーのID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "tweet_id", default: 0, null: false, comment: "いいねされたツイートのID"

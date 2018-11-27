@@ -1,5 +1,9 @@
 class LikesController < ApplicationController
 
+  def index
+    @likes = Like.all.where(user_id: current_user.id)
+  end
+
   def create
     like = Like.new(
       user_id: current_user.id,
