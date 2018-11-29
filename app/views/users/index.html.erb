@@ -1,0 +1,19 @@
+<h2>Users#index</h2>
+<% @users.each do |user| %>
+  <div class="tweet">
+    <p><%= user.user_name %></p>
+    <% if user.id == user.following.followed_user_id %>
+      <p>
+        <%= link_to follow_destroy_path(user.id), method: :delete do %>
+          <i class="fas fa-user"></i>
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to follow_create_path(user.id), method: :post do %>
+          <i class="far fa-user"></i>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

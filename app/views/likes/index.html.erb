@@ -1,17 +1,17 @@
 <h2>likes#index</h2>
-<% @likes.each do |like| %>
+<% @user.liked_tweets.each do |like| %>
   <div class="tweet">
-    <p><span class="user-name"><%= like.user.user_name %></span>　<%= like.tweet.created_at %></p>
-    <p><%= like.tweet.tweet %></p>
+    <p><span class="user-name"><%= like.user.user_name %></span>　<%= like.created_at %></p>
+    <p><%= like.tweet %></p>
     <ul class="icons">
       <li class="icon"><i class="far fa-comment"></i></li>
       <li class="icon">
-        <%= link_to like_destroy_path(like.tweet_id), method: :delete do %>
+        <%= link_to like_destroy_path(like.id), method: :delete do %>
           <i class="fas fa-heart"></i>
         <% end %>
       </li>
       <li class="icon">
-        <%= link_to tweet_destroy_path(like.tweet_id), method: :delete do %>
+        <%= link_to tweet_destroy_path(like.id), method: :delete do %>
           <i class="far fa-trash-alt"></i>
         <% end %>
       </li>

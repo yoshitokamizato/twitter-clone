@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
 
   def index
-    @likes = Like.all.where(user_id: current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def create
