@@ -5,7 +5,16 @@
     <p><%= like.tweet.tweet %></p>
     <ul class="icons">
       <li class="icon"><i class="far fa-comment"></i></li>
-      <li class="icon"><i class="fas fa-heart"></i></li>
+      <li class="icon">
+        <%= link_to like_destroy_path(like.tweet_id), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </li>
+      <li class="icon">
+        <%= link_to tweet_destroy_path(like.tweet_id), method: :delete do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </li>
     </ul>
   </div>
 <% end %>
