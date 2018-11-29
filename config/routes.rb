@@ -10,13 +10,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tweets do
-    resources :replies, except: [:index]
-  end
-  resources :users, only: [:show] do
-    resources :follows, only: [:index, :create, :destroy]
-    resources :likes, only: [:index, :create, :destroy]
-  end
+  # resources :tweets do
+  #   resources :replies, except: [:index]
+  # end
+  get 'users/:id/show' => 'users#show', as: :user
+  get 'users/:user_id/follows' => 'follows#index', as: :user_follows
+  post 'users/:user_id/follows/create' => 'follows#create', as: :user_follows_create
+  delete 'users/:user_id/follows/destroy' => 'follows#destroy', as: :user_follows_destroy
+  post 'tweets/create' => 'tweets#create', as: :tweet_create
+  delete 'tweets/:tweet_id/destroy' => 'tweets#destroy', as: :tweet_destroy
+  get 'users/:user_id/likes' => 'likes#index', as: :user_likes
+  post 'likes/:tweet_id/create' => 'likes#create', as: :like_create
+  delete 'likes/:tweet_id/destroy' => 'likes#destroy', as: :like_destroy
+
   # get 'tweets/index' => 'tweets#index'
   # post 'tweets/create' => 'tweets#create'
   # delete 'tweets/destroy' => 'tweets#destroy'
