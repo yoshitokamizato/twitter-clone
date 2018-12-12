@@ -1,17 +1,32 @@
-<h2>likes#index</h2>
+<h2>いいねしたツイート一覧</h2>
 <% @user.liked_tweets.each do |like| %>
-  <div class="tweet">
-    <p><span class="user-name"><%= like.user.user_name %></span>　<%= like.created_at %></p>
-    <p><%= like.tweet %></p>
-    <ul class="icons">
-      <li class="icon"><i class="far fa-comment"></i></li>
-      <li class="icon">
-        <%= link_to like_destroy_path(like.id), method: :delete do %>
-          <i class="fas fa-heart"></i>
-        <% end %>
-      </li>
-      <li class="icon">
-        <%= link_to tweet_destroy_path(like.id), method: :delete do %>
+  <div class="item">
+    <div class="flex-parent-flexstart">
+      <span class="flex-child user-name"><%= like.user.user_name %></span>
+      <span class="flex-child"><%= like.created_at.to_s %></p></span>
+    </div>
+    <div class="tweet">
+      <%= like.tweet %>
+    </div>
+    <ul class="flex-parent-flexstart">
+      <li class="flex-child"><i class="far fa-comment"></i></li>
+      <% if false %>
+      <% if Like.exists?(tweet_id: like.tweet.id) %>
+        <li class="flex-child">
+          <%= link_to user_like_path(current_user.id, like.id), method: :delete do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="flex-child">
+          <%= link_to user_likes_path(current_user.id), method: :post do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+        </li>
+      <% end %>
+      <% end %>
+      <li class="flex-child">
+        <%= link_to user_tweet_path(current_user.id, like.id), method: :delete do %>
           <i class="far fa-trash-alt"></i>
         <% end %>
       </li>

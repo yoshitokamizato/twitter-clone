@@ -58,8 +58,7 @@ class TweetsPage extends React.Component {
       type: 'POST',
       cache: false,
       data: {
-        tweet_id: likedTweetId,
-        is_liked: true,
+        tweet_id: likedTweetId
       },
       success: (data) => {
         this.loadTweetsFromServer();

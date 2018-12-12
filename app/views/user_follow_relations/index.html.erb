@@ -1,0 +1,11 @@
+<h1>UserFollowRelations#index</h1>
+
+<h2>フォロー</h2>
+<% @followings.each do |user_follow_relation| %>
+  <p><%= user_follow_relation.following.user_name %><p>
+<% end %>
+
+<h2>フォロワー</h2>
+<% @followers.each do |user_follow_relation| %>
+  <p><%= user_follow_relation.follower.user_name %><p>
+<% end %>

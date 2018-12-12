@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        conclusion: 覚えたこと
+        episode: エピソード
+        name: お名前
+      comment:
+        comment: コメント

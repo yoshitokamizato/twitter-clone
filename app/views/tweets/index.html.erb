@@ -1,38 +1,47 @@
-<h2>tweets#index</h2>
-<%= form_with url: tweet_create_path do |f| %>
-  <p><%= f.text_area :tweet %></p>
-  <p><%= f.submit '登録する' %></p>
-  <% @tweet.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-  <% end %>
-  <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-  <% end %>
+<h2>ツイート一覧</h2>
+
+<%= form_with model: @tweet, url: tweets_path, method: :post, local: true do |f| %>
+  <div class="new-tweet-form">
+    <% @tweet.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+    <%= f.text_area :tweet, :class => 'new-tweet' %>
+    <%= f.submit '送信', :class => 'new-tweet-submit' %>
+  </div>
 <% end %>
+
 <% @tweets.each do |tweet| %>
-  <div class="tweet">
-    <p><span class="user-name"><%= tweet.user.user_name %></span>　<%= tweet.created_at %></p>
-    <p><%= tweet.tweet %></p>
-    <ul class="icons">
-      <li class="icon"><i class="far fa-comment"></i></li>
+  <div class="item">
+    <div class="flex-parent-flexstart">
+      <span class="flex-child user-name"><%= tweet.user.user_name %></span>
+      <span class="flex-child"><%= tweet.id %></p></span>
+      <span class="flex-child"><%= tweet.created_at.to_s %></p></span>
+    </div>
+    <div class="tweet">
+      <%= tweet.tweet %>
+    </div>
+    <ul class="flex-parent-flexstart">
+      <li class="flex-child"><i class="far fa-comment"></i></li>
       <% if Like.exists?(tweet_id: tweet.id) %>
-        <li class="icon">
-          <%= link_to like_destroy_path(tweet.id), method: :delete do %>
+        <li class="flex-child">
+          <%= link_to like_path(tweet.id), method: :delete do %>
             <i class="fas fa-heart"></i>
           <% end %>
         </li>
       <% else %>
-        <li class="icon">
-          <%= link_to like_create_path(tweet.id), method: :post do %>
+        <li class="flex-child">
+          <%= link_to tweet_likes_path(tweet.id), method: :post do %>
             <i class="far fa-heart"></i>
           <% end %>
         </li>
       <% end %>
-      <li class="icon">
-        <%= link_to tweet_destroy_path(tweet.id), method: :delete do %>
-          <i class="far fa-trash-alt"></i>
-        <% end %>
-      </li>
+      <% if tweet.user_id == current_user.id %>
+        <li class="flex-child">
+          <%= link_to tweet_path(tweet.id), method: :delete do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 <% end %>

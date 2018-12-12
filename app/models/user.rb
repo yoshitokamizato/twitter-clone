@@ -9,9 +9,14 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_tweets, through: :likes, source: :tweet
-  has_many :followings, class_name: 'Follow', dependent: :destroy
-  has_many :followers, class_name: 'Follow', dependent: :destroy
 
+  has_many :followings, class_name: 'UserFollowRelation', foreign_key: :followed_user_id, dependent: :destroy
+  has_many :followers, class_name: 'UserFollowRelation', foreign_key: :following_user_id, dependent: :destroy
+
+  # has_many :active_follow_relations, class_name: 'FollowRelation', foreign_key: :following_user_id, dependent: :destroy
+  # has_many :followings, class_name: 'User', through: :active_follow_relations, source: :following
+  # has_many :passive_follow_relations, class_name: 'FollowRelation', foreign_key: :followed_user_id, dependent: :destroy
+  # has_many :followers, class_name: 'User', through: :passive_follow_relations, source: :follower
 
   # # 回答者
   # has_many :active_follows, class_name: 'Follow', foreign_key: :follower_id, dependent: :destroy

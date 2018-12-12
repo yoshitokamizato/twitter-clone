@@ -14,16 +14,99 @@
  *= require_self
  */
 
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'colors';
+@import 'mixins';
+
+/* =========================================================
+ 一般
+========================================================= */
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #e6ecf0;
-  h3 {
-    text-align: center;
+  margin: 1rem;
+  // font-size: 14px;
+  background-color: $background-color;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+a.follow {
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: $border-radius;
+  background-color: $primary-color;
+  &:hover {
+    background-color: darken($primary-color, 10%);
   }
+}
+
+header {
+  text-align: center;
+}
+
+nav {
+  @include flex-parent-flexend;
+}
+
+h1 {
+  margin: 2rem 0;
+}
+h2 {
+  margin: 1rem 0;
+}
+// h3 {
+//   margin: 1rem 0;
+// }
+
+#container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+/* =========================================================
+ パーツ
+========================================================= */
+
+.flex-parent-spacebetween {
+  @include flex-parent-spacebetween;
+}
+.flex-parent-flexstart {
+  @include flex-parent-flexstart;
+}
+.flex-child {
+  @include flex-child;
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 500px;
+}
+
+/* =========================================================
+ レスポンシブ
+========================================================= */
+
+@media (max-width: 480px) {
+
+#container {
+  width: 95%;
+}
+  
 }

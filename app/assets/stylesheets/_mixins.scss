@@ -1,0 +1,54 @@
+@mixin flex-parent-spacebetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+@mixin flex-parent-flexstart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+}
+
+@mixin flex-parent-flexend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+@mixin flex-child {
+  margin: 0 1rem 0 0;
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+@mixin table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@mixin table-element {
+  th, td {
+    padding: 0.7rem;
+    font-weight: normal;
+    text-align: left;
+    border: 1px solid $border-color;
+  }
+}
+
+@mixin btn {
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: $border-radius;
+  border: 0;
+  color: #FFF;
+  background-color: $primary-color;
+  &:hover {
+    background-color:darken($primary-color, 5%);
+  }
+}

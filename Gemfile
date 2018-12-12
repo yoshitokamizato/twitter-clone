@@ -9,6 +9,9 @@ gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'devise'
 
+# validationエラーメッセージ日本語化
+gem 'rails-i18n'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use mysql as the database for Active Record

@@ -37,9 +37,11 @@ class Tweet extends React.Component {
       <div className="tweet">
         <p><span className="user-name">{tweet.user.user_name}</span>　<span className="f-small">{date(new Date(tweet.created_at), 'YYYY/MM/DD hh:mm:ss')}</span></p>
         <p>{tweet.tweet}</p>
-        <p><i className="far fa-comment"></i></p>
-        <p><span onClick={()=>{this.handleLike(tweet.id)}}>{tweet.is_liked ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</span></p>
-        <p><button onClick={()=>{this.handleDelete(tweet.id)}}>削除</button></p>
+        <ul className="icons">
+          <li className="icon"><i className="far fa-comment"></i></li>
+          <li className="icon"><span onClick={()=>{this.handleLike(tweet.id)}}>{tweet.is_liked ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</span></li>
+          <li className="icon"><i className="far fa-trash-alt" onClick={()=>{this.handleDelete(tweet.id)}}></i></li>
+        </ul>
       </div>
     );
   }

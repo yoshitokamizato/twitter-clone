@@ -1,19 +1,21 @@
-<h2>Users#index</h2>
+<h2>ユーザー一覧</h2>
+
 <% @users.each do |user| %>
-  <div class="tweet">
-    <p><%= user.user_name %></p>
-    <% if user.id == user.following.followed_user_id %>
-      <p>
-        <%= link_to follow_destroy_path(user.id), method: :delete do %>
-          <i class="fas fa-user"></i>
+  <% unless user.id == current_user.id %>
+    <ul class="flex-parent-spacebetween">
+      <li><img class="profile-pic" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="profile picture"></li>
+      <li><%= user.user_name %></li>
+      <li>
+        <% if @followings_ids.include?(user.id) %>
+          <%= link_to user_user_follow_relation_path(current_user.id, user.id), method: :delete, :class => 'follow' do %>
+            <i class="fas fa-user-minus"></i> フォロー外す
+          <% end %>
+        <% else %>
+          <%= link_to user_user_follow_relations_path(current_user.id), method: :post, :class => 'follow' do %>
+            <i class="fas fa-user-plus"></i> フォローする
+          <% end %>
         <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to follow_create_path(user.id), method: :post do %>
-          <i class="far fa-user"></i>
-        <% end %>
-      </p>
-    <% end %>
-  </div>
+      </li>
+    </ul>
+  <% end %>
 <% end %>

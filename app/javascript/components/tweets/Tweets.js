@@ -16,10 +16,9 @@ class Tweets extends React.Component {
     const tweets = this.props.tweets.map(function (tweet) {
       return <Tweet tweet={tweet} key={tweet.id} onLike={onLike} onDelete={onDelete} />;
     });
-    const tweetsDesc = tweets.reverse();
     return (
       <div>
-        {tweetsDesc}
+        {tweets}
       </div>
     );
   }
