@@ -1,8 +1,10 @@
 class TweetsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:create, :destroy]
+  
   def index
-    followings = UserFollowRelation.where(followed_user_id: current_user.id)
-    followings_ids = followings.pluck(:id)
+    followings = UserFollowRelation.where(following_user_id: current_user.id)
+    followings_ids = followings.pluck(:followed_user_id)
     user_ids = followings_ids.push(current_user.id)
     @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
     @tweet = Tweet.new
@@ -30,8 +32,6 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     if tweet.destroy
       redirect_to tweets_path
-    else
-      render tweets_path
     end
   end
 

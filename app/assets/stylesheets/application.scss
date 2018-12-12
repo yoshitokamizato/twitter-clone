@@ -99,6 +99,13 @@ footer {
   border-radius: 500px;
 }
 
+.follow {
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: $border-radius;
+  background-color: $primary-color;
+}
+
 /* =========================================================
  レスポンシブ
 ========================================================= */

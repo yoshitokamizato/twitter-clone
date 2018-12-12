@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @user = User.find(current_user.id)
   end
@@ -15,6 +17,7 @@ class LikesController < ApplicationController
     like = Like.find_by(tweet_id: params[:id], user_id: current_user.id)
     if like.destroy
       redirect_to tweets_path
+    end
   end
 
 end
