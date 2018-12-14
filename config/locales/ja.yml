@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      tweet: ツイート
+    attributes:
+      tweet:
+        tweet: ツイート
+      comment:
+        comment: コメント

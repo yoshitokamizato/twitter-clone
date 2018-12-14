@@ -1,0 +1,20 @@
+<h2>ユーザー一覧</h2>
+<% @users.each do |user| %>
+  <% unless user.id == current_user.id %>
+    <ul class="flex-parent-spacebetween">
+      <li><%= image_tag user.image.thumb.to_s, :class => 'profile-pic' %></li>
+      <li><%= user.user_name %></li>
+      <li>
+        <% if @followings_ids.include?(user.id) %>
+          <%= link_to user_follow_relation_path(user.id), method: :delete, :class => 'follow' do %>
+            <i class="fas fa-user-minus"></i> フォロー外す
+          <% end %>
+        <% else %>
+          <%= link_to user_user_follow_relations_path(user.id), method: :post, :class => 'follow' do %>
+            <i class="fas fa-user-plus"></i> フォローする
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

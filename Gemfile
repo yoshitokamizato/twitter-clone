@@ -3,11 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'carrierwave'
+gem 'rmagick'
 gem 'webpacker'
 gem 'react-rails'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'devise'
+
+# validationエラーメッセージ日本語化
+gem 'rails-i18n'
+gem 'devise-i18n-views'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

@@ -5,28 +5,37 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <li class="flex-child">Hello, <%= current_user.user_name %>!</li>
+          <li class="flex-child"><%= link_to 'タイムライン', authenticated_root_path %></li>
+          <li class="flex-child"><%= link_to 'ユーザー一覧', users_path %></li>
+          <li class="flex-child"><%= link_to 'フォロー/フォロワー', user_user_follow_relations_path(current_user.id) %></li>
+          <li class="flex-child"><%= link_to 'いいねしたツイート', user_likes_path(current_user.id) %></li>
+          <li class="flex-child"><%= link_to 'マイページ', edit_user_registration_path %></li>
+          <li class="flex-child"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li class="flex-child"><%= link_to "新規作成", new_user_registration_path %></li>
+          <li class="flex-child"><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
+      </nav>
+      <h1>Twitterもどき</h1>
+    </header>
 
-    <% if user_signed_in? %>
-      ログインユーザー： <%= current_user.email %>
-      <%= link_to 'ホーム', '/' %>
-      <%= link_to 'アカウント変更', edit_user_registration_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規作成", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-
-    <h1>Twitterもどきだよ</h1>
-    <%= yield %>
+    <div id="container">
+      <%= yield %>
+      <footer>
+        &copy; 2018 Twitterもどき
+      </footer>
+    </div>
     
   </body>
 </html>

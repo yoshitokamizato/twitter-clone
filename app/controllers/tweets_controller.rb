@@ -1,32 +1,43 @@
 class TweetsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:create, :destroy]
+  
   def index
-    tweets = Tweet.all.where(user_id: current_user.id)
-    respond_to do |format|
-      format.html # 通常のURLの場合、index.html.erb が返される
-      format.json { render json: tweets.to_json(:include => {
-        :user => {:only => :user_name},
-        :likes => {:only => :tweet_id}
-      }) } # URLが.jsonの場合、tweets.to_json が返される
-    end
+    followings = UserFollowRelation.where(following_user_id: current_user.id)
+    followings_ids = followings.pluck(:followed_user_id)
+    user_ids = followings_ids.push(current_user.id)
+    @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
+    @tweet = Tweet.new
+    like = Like.new
+  end
+
+  def show
+
   end
 
   def create
-    tweet = Tweet.new(
-      user_id: current_user.id,
-      tweet: params[:tweet]
-      )
-    tweet.save
+    followings = UserFollowRelation.where(following_user_id: current_user.id)
+    followings_ids = followings.pluck(:followed_user_id)
+    user_ids = followings_ids.push(current_user.id)
+    @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
+    @tweet = Tweet.new(tweet: tweet_params[:tweet], user_id: current_user.id)
+    if @tweet.save
+      redirect_to tweets_path
+    else
+      render template: 'tweets/index'
+    end
   end
 
   def destroy
     tweet = Tweet.find(params[:id])
-    tweet.destroy
+    if tweet.destroy
+      redirect_to tweets_path
+    end
   end
 
-  # private
-  #   def create_params
-  #     params.require(:tweet).permit(:user_id, :tweet)
-  #   end
+  private
+    def tweet_params
+      params.require(:tweet).permit(:tweet)
+    end
 
 end
