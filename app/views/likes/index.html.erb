@@ -1,0 +1,28 @@
+<h2>いいねしたツイート一覧</h2>
+<% @user.liked_tweets.each do |liked_tweet| %>
+  <div class="item">
+    <div class="flex-parent-flexstart">
+      <span class="flex-child"><%= image_tag liked_tweet.user.image.thumb.to_s, :class => 'tweet-profile-pic' %></span>
+      <span class="flex-child user-name"><%= liked_tweet.user.user_name %></span>
+      <span class="flex-child"><%= liked_tweet.created_at.to_s %></p></span>
+    </div>
+    <div class="tweet">
+      <%= liked_tweet.tweet %>
+    </div>
+    <ul class="flex-parent-flexstart">
+      <li class="flex-child"><i class="far fa-comment"></i></li>
+      <li class="flex-child">
+        <%= link_to like_path(liked_tweet.id), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </li>
+      <% if liked_tweet.user_id == current_user.id %>
+        <li class="flex-child">
+          <%= link_to tweet_path(liked_tweet.id), method: :delete do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<h2>フォロー</h2>
+<% @followings.each do |user_follow_relation| %>
+  <ul class="flex-parent-spacebetween">
+      <li><%= image_tag user_follow_relation.following.image.thumb.to_s, :class => 'profile-pic' %></li>
+      <li><%= user_follow_relation.following.user_name %></li>
+      <li>
+        <%= link_to user_follow_relation_path(user_follow_relation.following.id), method: :delete, :class => 'follow' do %>
+          <i class="fas fa-user-minus"></i> フォロー外す
+        <% end %>
+      </li>
+    </ul>
+<% end %>
+
+<h2>フォロワー</h2>
+<% @followers.each do |user_follow_relation| %>
+  <ul class="flex-parent-spacebetween">
+    <li><%= image_tag user_follow_relation.follower.image.thumb.to_s, :class => 'profile-pic' %></li>
+    <li><%= user_follow_relation.follower.user_name %></li>
+    <li>
+      <% if @followings_ids.include?(user_follow_relation.follower.id) %>
+        <span class="follow"><i class="fas fa-user-check"></i> 　フォロー中</span>
+      <% else %>
+        <%= link_to user_user_follow_relations_path(user_follow_relation.follower.id), method: :post, :class => 'follow' do %>
+          <i class="fas fa-user-plus"></i> フォローする
+        <% end %>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
