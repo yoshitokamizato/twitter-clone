@@ -16,8 +16,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    followings = UserFollowRelation.where(followed_user_id: current_user.id)
-    followings_ids = followings.pluck(:id)
+    followings = UserFollowRelation.where(following_user_id: current_user.id)
+    followings_ids = followings.pluck(:followed_user_id)
     user_ids = followings_ids.push(current_user.id)
     @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
     @tweet = Tweet.new(tweet: tweet_params[:tweet], user_id: current_user.id)

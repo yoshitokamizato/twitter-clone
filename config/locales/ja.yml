@@ -1,11 +1,9 @@
 ja:
   activerecord:
     models:
-      post: 投稿
+      tweet: ツイート
     attributes:
-      post:
-        conclusion: 覚えたこと
-        episode: エピソード
-        name: お名前
+      tweet:
+        tweet: ツイート
       comment:
         comment: コメント
