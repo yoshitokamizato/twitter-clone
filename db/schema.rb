@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_085941) do
-
-  create_table "follow_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "following_user_id", default: 0, null: false, comment: "フォローしたユーザーのID"
-    t.integer "followed_user_id", default: 0, null: false, comment: "フォローされたユーザーのID"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_12_14_024727) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "tweet_id", default: 0, null: false, comment: "いいねされたツイートのID"
@@ -29,7 +22,6 @@ ActiveRecord::Schema.define(version: 2018_12_08_085941) do
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id", default: 0, null: false, comment: "作成者ID user.id"
     t.text "tweet", comment: "ツイート内容"
-    t.boolean "is_liked", default: false, null: false, comment: "該当ツイートがいいねされているかどうか true:いいねされている false:いいねされていない"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_12_08_085941) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "user_name", default: "", null: false, comment: "ユーザー名"
     t.string "email", default: "", null: false
+    t.text "image", comment: "プロフィール画像"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

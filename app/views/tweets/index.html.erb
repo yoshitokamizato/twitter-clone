@@ -13,8 +13,8 @@
 <% @tweets.each do |tweet| %>
   <div class="item">
     <div class="flex-parent-flexstart">
+      <span class="flex-child"><%= image_tag tweet.user.image.thumb.to_s, :class => 'tweet-profile-pic' %></span>
       <span class="flex-child user-name"><%= tweet.user.user_name %></span>
-      <span class="flex-child"><%= tweet.id %></span>
       <span class="flex-child"><%= tweet.created_at.to_s %></span>
     </div>
     <div class="tweet">

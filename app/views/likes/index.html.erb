@@ -2,8 +2,8 @@
 <% @user.liked_tweets.each do |liked_tweet| %>
   <div class="item">
     <div class="flex-parent-flexstart">
+      <span class="flex-child"><%= image_tag liked_tweet.user.image.thumb.to_s, :class => 'tweet-profile-pic' %></span>
       <span class="flex-child user-name"><%= liked_tweet.user.user_name %></span>
-      <span class="flex-child"><%= liked_tweet.id %></span>
       <span class="flex-child"><%= liked_tweet.created_at.to_s %></p></span>
     </div>
     <div class="tweet">
