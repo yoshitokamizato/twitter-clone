@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
@@ -20,14 +22,14 @@
           <li class="flex-child"><%= link_to 'ユーザー一覧', users_path %></li>
           <li class="flex-child"><%= link_to 'フォロー/フォロワー', user_user_follow_relations_path(current_user.id) %></li>
           <li class="flex-child"><%= link_to 'いいねしたツイート', user_likes_path(current_user.id) %></li>
-          <li class="flex-child"><%= link_to 'マイページ', edit_user_registration_path %></li>
+          <li class="flex-child"><%= link_to 'アカウント設定', edit_user_registration_path %></li>
           <li class="flex-child"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li class="flex-child"><%= link_to "新規作成", new_user_registration_path %></li>
           <li class="flex-child"><%= link_to "ログイン", new_user_session_path %></li>
         <% end %>
       </nav>
-      <h1>Twitterもどき</h1>
+      <h1><%= link_to 'Twitterもどき', authenticated_root_path %></h1>
     </header>
 
     <div id="container">

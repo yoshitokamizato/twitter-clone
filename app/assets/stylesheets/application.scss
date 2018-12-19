@@ -49,6 +49,13 @@ a.follow {
   }
 }
 
+h1 {
+  margin: 2rem 0;
+}
+h2, h3 {
+  margin: 1rem 0;
+}
+
 header {
   text-align: center;
 }
@@ -56,16 +63,6 @@ header {
 nav {
   @include flex-parent-flexend;
 }
-
-h1 {
-  margin: 2rem 0;
-}
-h2 {
-  margin: 1rem 0;
-}
-// h3 {
-//   margin: 1rem 0;
-// }
 
 #container {
   width: 40%;
@@ -78,9 +75,26 @@ footer {
   text-align: center;
 }
 
+section {
+  margin-bottom: 3rem;
+}
+
+input.field {
+  width: 100%;
+}
+
 /* =========================================================
  パーツ
 ========================================================= */
+
+#error_explanation {
+  h2 {
+    display: none;
+  }
+  ul {
+    list-style: none;
+  }
+}
 
 .flex-parent-spacebetween {
   @include flex-parent-spacebetween;

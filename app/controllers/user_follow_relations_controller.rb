@@ -1,7 +1,5 @@
 class UserFollowRelationsController < ApplicationController
 
-  before_action :authenticate_user!
-
   def index
     @followings = UserFollowRelation.eager_load(:following).where(following_user_id: current_user.id)
     @followings_ids = @followings.pluck(:followed_user_id)

@@ -1,6 +1,4 @@
 class TweetsController < ApplicationController
-
-  before_action :authenticate_user!, only: [:create, :destroy]
   
   def index
     followings = UserFollowRelation.where(following_user_id: current_user.id)

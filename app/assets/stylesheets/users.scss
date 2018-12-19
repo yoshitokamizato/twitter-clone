@@ -1,3 +1,62 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'colors';
+@import 'mixins';
+
+table.user-edit-form {
+  @include table;
+  @include table-element;
+  th {
+    width: 40%;
+    background-color: $secondary-color;  
+  }
+  td {
+    background-color: #fff;
+  }
+}
+
+.user-delete {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+input.user-edit-submit {
+  @include btn;
+  width: 100%;
+  margin-top: 1rem;
+}
+input.user-delete-submit {
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: $border-radius;
+  border: 1;
+  color: #000;
+  background-color: $background-color;
+  &:hover {
+    background-color:darken($background-color, 5%);
+  }
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+/* =========================================================
+ レスポンシブ
+========================================================= */
+
+@media (max-width: 480px) {
+
+table.user-edit-form {
+  th, td {
+    width: 100%;
+    display: block;
+    border-top: none;
+  }
+  tr:first-child th {
+    border-top: 1px solid $border-color;
+  }
+}
+
+}
