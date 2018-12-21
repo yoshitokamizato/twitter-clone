@@ -1,9 +1,7 @@
 class TweetsController < ApplicationController
-  
+
   def index
-    followings = UserFollowRelation.where(following_user_id: current_user.id)
-    followings_ids = followings.pluck(:followed_user_id)
-    user_ids = followings_ids.push(current_user.id)
+    user_ids = UserFollowRelation.make_user_id_list(current_user.id)
     @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
     @tweet = Tweet.new
     like = Like.new
@@ -14,9 +12,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    followings = UserFollowRelation.where(following_user_id: current_user.id)
-    followings_ids = followings.pluck(:followed_user_id)
-    user_ids = followings_ids.push(current_user.id)
+    user_ids = UserFollowRelation.make_user_id_list(current_user.id)
     @tweets = Tweet.where(user_id: user_ids).order('created_at DESC')
     @tweet = Tweet.new(tweet: tweet_params[:tweet], user_id: current_user.id)
     if @tweet.save
